@@ -15,11 +15,11 @@ const Toggle = ({messageVisibility, toggleMessage}) => (
 );
 
 const mapStateToProps = (state) => ({
-    messageVisibility: state.message.messageVisibility,
+    messageVisibility: state.toggle.messageVisibility,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    toggleMessage
+    toggleMessage,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Toggle);

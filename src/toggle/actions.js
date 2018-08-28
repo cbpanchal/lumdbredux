@@ -4,4 +4,4 @@ export function toggleMessage(params) {
     return {
         type: TOGGLE_MESSAGE,
     };
-};
+}

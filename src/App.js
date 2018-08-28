@@ -1,14 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MoviesList from './MoviesList';
-import MovieDetails from './MovieDetails';
+import MoviesList from './movies/MoviesList';
+import MovieDetails from './movies/MovieDetails';
 import { Provider } from 'react-redux';
 import rootReducer from './rootReducer';
 import { applyMiddleware, createStore } from 'redux';
+import { save, load } from 'redux-localstorage-simple';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import Toggle from './Toggle';
+import Toggle from './toggle/Toggle';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,12 +18,12 @@ import {
   Link
 } from 'react-router-dom';
 
-const middleware = [logger];
+const middleware = [logger, thunk];
 
 const store = createStore(
   rootReducer,
-  {},
-  composeWithDevTools(applyMiddleware(...middleware)),
+  load(),
+  composeWithDevTools(applyMiddleware(...middleware, save())),
 );
 
 const App = () => (
